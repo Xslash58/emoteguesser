@@ -6,6 +6,11 @@ using UnityEngine;
 using TMPro;
 using System.Threading.Tasks;
 using UnityEngine.Networking;
+using WebP;
+using System;
+using unity.libwebp;
+using UnityEngine.Assertions;
+using unity.libwebp.Interop;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,53 +36,111 @@ public class GameManager : MonoBehaviour
 
     public void RerollEmote()
     {
-        int id = Random.Range(-1, emoteset.emotes.Length);
+        int id = UnityEngine.Random.Range(-1, emoteset.emotes.Length);
 
         Emote = emoteset.emotes[id];
 
         isGif = Emote.data.animated;
 
         string hosturl = Emote.data.host.url;
-        string ext = isGif ? "gif" : "png";
+        //bool anim = isGif ? "gif" : "png";
+        string ext = "webp";
         string finalurl = "https:" + hosturl + $"/4x.{ext}";
 
-        StartCoroutine(DownloadImage(finalurl, EmotePreview));
+        StartCoroutine(DownloadImage(finalurl, EmotePreview, isGif));
     }
 
 
-    IEnumerator DownloadImage(string Url, RawImage image)
+    IEnumerator DownloadImage(string Url, RawImage image, bool animated)
     {
         frames.Clear();
 
         UnityWebRequest request;
 
         request = UnityWebRequestTexture.GetTexture(Url);
-
-        if (isGif)
-        {
-            DownloadInfo.SetActive(true);
-            DownloadHandlerBuffer dH = new DownloadHandlerBuffer();
-            request.downloadHandler = dH;
-        }
+        DownloadInfo.SetActive(true);
+        DownloadHandlerBuffer dH = new DownloadHandlerBuffer();
+        request.downloadHandler = dH;
 
         yield return request.SendWebRequest();
 
-        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
-            Debug.Log(request.error);
-        else
-        {
-            if (isGif)
-                StartCoroutine(UniGif.GetTextureListCoroutine(request.downloadHandler.data, (gifTexList, loopCount, width, height) =>
-                {
-                    foreach (var texture in gifTexList)
-                        frames.Add(texture.m_texture2d);
-                    framesPerSecond = (int)frames.Count /2;
-                    DownloadInfo.SetActive(false);
-                }));
-            else
-                image.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
-        }
+        var bytes = request.downloadHandler.data;
 
+        List<(Texture2D, int)> list = LoadAnimation(bytes);
+        foreach ((Texture2D, int) item in list)
+        {
+            frames.Add(item.Item1);
+        }
+        DownloadInfo.SetActive(false);
+    }
+
+    private unsafe List<(Texture2D, int)> LoadAnimation(byte[] bytes)
+    {
+        List<(Texture2D, int)> ret = new List<(Texture2D, int)>();
+
+        WebPAnimDecoderOptions option = new WebPAnimDecoderOptions
+        {
+            use_threads = 1,
+            color_mode = WEBP_CSP_MODE.MODE_RGBA,
+        };
+        option.padding[5] = 1;
+
+        NativeLibwebpdemux.WebPAnimDecoderOptionsInit(&option);
+        fixed (byte* p = bytes)
+        {
+            WebPData webpdata = new WebPData
+            {
+                bytes = p,
+                size = new UIntPtr((uint)bytes.Length)
+            };
+            WebPAnimDecoder* dec = NativeLibwebpdemux.WebPAnimDecoderNew(&webpdata, &option);
+            //dec->config_.options.flip = 1;
+
+            WebPAnimInfo anim_info = new WebPAnimInfo();
+
+            NativeLibwebpdemux.WebPAnimDecoderGetInfo(dec, &anim_info);
+
+            Debug.LogWarning($"{anim_info.frame_count} {anim_info.canvas_width}/{anim_info.canvas_height}");
+
+            uint size = anim_info.canvas_width * 4 * anim_info.canvas_height;
+
+            int timestamp = 0;
+
+            IntPtr pp = new IntPtr();
+            byte** unmanagedPointer = (byte**)&pp;
+            for (int i = 0; i < anim_info.frame_count; ++i)
+            {
+                int result = NativeLibwebpdemux.WebPAnimDecoderGetNext(dec, unmanagedPointer, &timestamp);
+                Assert.AreEqual(1, result);
+
+                int lWidth = (int)anim_info.canvas_width;
+                int lHeight = (int)anim_info.canvas_height;
+                bool lMipmaps = false;
+                bool lLinear = false;
+
+                Texture2D texture = Texture2DExt.CreateWebpTexture2D(lWidth, lHeight, lMipmaps, lLinear);
+                texture.LoadRawTextureData(pp, (int)size);
+
+                {// Flip updown.
+                 // ref: https://github.com/netpyoung/unity.webp/issues/25
+                 // ref: https://github.com/netpyoung/unity.webp/issues/21
+                 // ref: https://github.com/webmproject/libwebp/blob/master/src/demux/anim_decode.c#L309
+                    Color[] pixels = texture.GetPixels();
+                    Color[] pixelsFlipped = new Color[pixels.Length];
+                    for (int y = 0; y < anim_info.canvas_height; y++)
+                    {
+                        Array.Copy(pixels, y * anim_info.canvas_width, pixelsFlipped, (anim_info.canvas_height - y - 1) * anim_info.canvas_width, anim_info.canvas_width);
+                    }
+                    texture.SetPixels(pixelsFlipped);
+                }
+
+                texture.Apply();
+                ret.Add((texture, timestamp));
+            }
+            NativeLibwebpdemux.WebPAnimDecoderReset(dec);
+            NativeLibwebpdemux.WebPAnimDecoderDelete(dec);
+        }
+        return ret;
     }
 
     private void Update()
