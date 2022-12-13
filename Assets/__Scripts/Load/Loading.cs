@@ -25,10 +25,22 @@ public class Loading : MonoBehaviour
             float status = asyncOperation.progress * 100;
             loadslider.value = status;
 
-            if (asyncOperation.progress >= 0.9f) // RemoteConfig in future
-                asyncOperation.allowSceneActivation = true;
+            if (asyncOperation.progress >= 0.9f)
+                StartCoroutine(CheckForRemoteCfg(asyncOperation));
 
             yield return null;
         }
+    }
+
+    public IEnumerator CheckForRemoteCfg(AsyncOperation asyncOperation)
+    {
+        if (RemoteConfig.instance.Ready)
+            asyncOperation.allowSceneActivation = true;
+        else
+        {
+            yield return new WaitForSeconds(0.2f);
+            StartCoroutine(CheckForRemoteCfg(asyncOperation));
+        }
+        yield return null;
     }
 }

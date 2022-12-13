@@ -16,9 +16,6 @@ public class DiscordController : MonoBehaviour
     public Discord.Activity activity;
     public ActivityManager activityManager;
 
-    public delegate void IDReadyHandler();
-    public event IDReadyHandler IDReady;
-
     public Int64 appId = 1052273084922593420;
 
     void Awake()
