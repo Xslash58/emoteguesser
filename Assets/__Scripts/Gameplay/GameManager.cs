@@ -84,6 +84,32 @@ public class GameManager : MonoBehaviour
 
         DownloadInfo.SetActive(false);
     }
+    IEnumerator PlayAnimation()
+    {
+        int prevTimestamp = 0;
+        for (int i = 0; i < frames.Count; ++i)
+        {
+            frame frame = frames[i];
+            if (EmotePreview == null)
+            {
+                yield break;
+            }
+            EmotePreview.texture = frame.texture;
+            int delay = frame.timestamp - prevTimestamp;
+            prevTimestamp = frame.timestamp;
+
+            if (delay < 0)
+            {
+                delay = 0;
+            }
+
+            yield return new WaitForSeconds(delay / 1000.0f);
+            if (i == frames.Count - 1)
+            {
+                i = -1;
+            }
+        }
+    }
 
     private unsafe (List<frame>, WebPAnimInfo) LoadAnimation(byte[] bytes)
     {
@@ -157,42 +183,16 @@ public class GameManager : MonoBehaviour
         return (ret, anim_info);
     }
 
-    private void Update()
+    public void Guess(string name)
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (name == Emote.name)
         {
-            Debug.LogWarning(Emote.name);
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
+            Debug.Log("You guessed it!");
             RerollEmote();
-        }
-    }
-
-    IEnumerator PlayAnimation()
-    {
-        int prevTimestamp = 0;
-        for (int i = 0; i < frames.Count; ++i)
+        } else
         {
-            frame frame = frames[i];
-            if (EmotePreview == null)
-            {
-                yield break;
-            }
-            EmotePreview.texture = frame.texture;
-            int delay = frame.timestamp - prevTimestamp;
-            prevTimestamp = frame.timestamp;
-
-            if (delay < 0)
-            {
-                delay = 0;
-            }
-
-            yield return new WaitForSeconds(delay / 1000.0f);
-            if (i == frames.Count - 1)
-            {
-                i = -1;
-            }
+            Debug.Log("nope");
         }
     }
+
 }
