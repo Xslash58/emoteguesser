@@ -200,8 +200,9 @@ public class GameManager : MonoBehaviour
         return (ret, anim_info);
     }
 
-    public void Guess(string name)
+    public void Guess()
     {
+        string name = IF_emote.text;
         if (name == Emote.name)
         {
             MatchResult.instance.Request(0, Emote.name);
