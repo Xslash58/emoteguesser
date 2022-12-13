@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using SevenTV.Types;
 using UnityEngine;
 using TMPro;
-using System.Threading.Tasks;
 using UnityEngine.Networking;
 using WebP;
 using System;
@@ -20,9 +19,16 @@ public class GameManager : MonoBehaviour
 
     public Emote Emote;
     public bool isGif = false;
-    public List<Texture2D> frames = new List<Texture2D>();
+    public List<frame> frames = new List<frame>();
     public int framesPerSecond = 10;
 
+    [System.Serializable] public struct frame
+    {
+        public Texture2D texture;
+        public int timestamp;
+    }
+
+    IEnumerator animCoroutine;
 
     SevenTV.SevenTV sevenTv;
     EmoteSet emoteset;
@@ -32,6 +38,8 @@ public class GameManager : MonoBehaviour
     {
         sevenTv = new SevenTV.SevenTV();
         emoteset = await sevenTv.GetEmoteSet(EmoteSetID);
+
+        animCoroutine = PlayAnimation();
     }
 
     public void RerollEmote()
@@ -43,9 +51,7 @@ public class GameManager : MonoBehaviour
         isGif = Emote.data.animated;
 
         string hosturl = Emote.data.host.url;
-        //bool anim = isGif ? "gif" : "png";
-        string ext = "webp";
-        string finalurl = "https:" + hosturl + $"/4x.{ext}";
+        string finalurl = $"https:{hosturl}/4x.webp";
 
         StartCoroutine(DownloadImage(finalurl, EmotePreview, isGif));
     }
@@ -54,6 +60,7 @@ public class GameManager : MonoBehaviour
     IEnumerator DownloadImage(string Url, RawImage image, bool animated)
     {
         frames.Clear();
+        StopCoroutine(animCoroutine);
 
         UnityWebRequest request;
 
@@ -66,17 +73,22 @@ public class GameManager : MonoBehaviour
 
         var bytes = request.downloadHandler.data;
 
-        List<(Texture2D, int)> list = LoadAnimation(bytes);
-        foreach ((Texture2D, int) item in list)
-        {
-            frames.Add(item.Item1);
-        }
+        (List<frame> list, WebPAnimInfo anim_info) = LoadAnimation(bytes);
+        frames = list;
+
+        animCoroutine = PlayAnimation();
+        StartCoroutine(animCoroutine);
+
+        EmotePreview.transform.localScale = new Vector3(anim_info.canvas_width / 128f, anim_info.canvas_height / 128f, 1);
+        EmotePreview.rectTransform.localPosition = new Vector3(0, 50, 0);
+
         DownloadInfo.SetActive(false);
     }
 
-    private unsafe List<(Texture2D, int)> LoadAnimation(byte[] bytes)
+    private unsafe (List<frame>, WebPAnimInfo) LoadAnimation(byte[] bytes)
     {
-        List<(Texture2D, int)> ret = new List<(Texture2D, int)>();
+        List<frame> ret = new List<frame>();
+        WebPAnimInfo anim_info = new WebPAnimInfo();
 
         WebPAnimDecoderOptions option = new WebPAnimDecoderOptions
         {
@@ -96,11 +108,9 @@ public class GameManager : MonoBehaviour
             WebPAnimDecoder* dec = NativeLibwebpdemux.WebPAnimDecoderNew(&webpdata, &option);
             //dec->config_.options.flip = 1;
 
-            WebPAnimInfo anim_info = new WebPAnimInfo();
-
             NativeLibwebpdemux.WebPAnimDecoderGetInfo(dec, &anim_info);
 
-            Debug.LogWarning($"{anim_info.frame_count} {anim_info.canvas_width}/{anim_info.canvas_height}");
+           // Debug.LogWarning($"{anim_info.frame_count} {anim_info.canvas_width}/{anim_info.canvas_height}");
 
             uint size = anim_info.canvas_width * 4 * anim_info.canvas_height;
 
@@ -135,22 +145,20 @@ public class GameManager : MonoBehaviour
                 }
 
                 texture.Apply();
-                ret.Add((texture, timestamp));
+                ret.Add(new frame
+                {
+                    texture = texture,
+                    timestamp = timestamp
+                });
             }
             NativeLibwebpdemux.WebPAnimDecoderReset(dec);
             NativeLibwebpdemux.WebPAnimDecoderDelete(dec);
         }
-        return ret;
+        return (ret, anim_info);
     }
 
     private void Update()
     {
-        if (frames.Count > 0)
-        {
-            int index = (int)(Time.time * framesPerSecond) % frames.Count;
-            EmotePreview.texture = frames[index];
-        }
-
         if (Input.GetKeyDown(KeyCode.K))
         {
             Debug.LogWarning(Emote.name);
@@ -158,6 +166,33 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O))
         {
             RerollEmote();
+        }
+    }
+
+    IEnumerator PlayAnimation()
+    {
+        int prevTimestamp = 0;
+        for (int i = 0; i < frames.Count; ++i)
+        {
+            frame frame = frames[i];
+            if (EmotePreview == null)
+            {
+                yield break;
+            }
+            EmotePreview.texture = frame.texture;
+            int delay = frame.timestamp - prevTimestamp;
+            prevTimestamp = frame.timestamp;
+
+            if (delay < 0)
+            {
+                delay = 0;
+            }
+
+            yield return new WaitForSeconds(delay / 1000.0f);
+            if (i == frames.Count - 1)
+            {
+                i = -1;
+            }
         }
     }
 }
