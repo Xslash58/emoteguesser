@@ -195,4 +195,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GiveUp()
+    {
+        if(Emote != null)
+            Debug.Log("Emote name was: " + Emote.name);
+        RerollEmote();
+    }
+
 }
