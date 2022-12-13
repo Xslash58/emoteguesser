@@ -454,6 +454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 401022801}
   - component: {fileID: 401022800}
+  - component: {fileID: 401022802}
   m_Layer: 0
   m_Name: __Scripts
   m_TagString: Untagged
@@ -493,6 +494,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &401022802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401022799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39bccd6c90e0bed4d8d6f77249d65e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1354583223}
+  MatchResultobject: {fileID: 1354583219}
+  T_Content: {fileID: 1354583221}
+  Templates:
+  - content: You guessed it!
+    color: {r: 0.023534894, g: 1, b: 0, a: 0}
+  - content: Nope
+    color: {r: 1, g: 0, b: 0, a: 0}
+  - content: 'The emote name was: {name}'
+    color: {r: 1, g: 1, b: 1, a: 0}
+  Queue: []
 --- !u!1 &441051758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,13 +1046,14 @@ GameObject:
   - component: {fileID: 1354583220}
   - component: {fileID: 1354583222}
   - component: {fileID: 1354583221}
+  - component: {fileID: 1354583223}
   m_Layer: 5
   m_Name: TIP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1354583220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1068,7 +1093,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The emote name was: XXXX'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1077,8 +1102,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278255365
-  m_fontColor: {r: 0.018116832, g: 1, b: 0, a: 1}
+    rgba: 65285
+  m_fontColor: {r: 0.018116832, g: 1, b: 0, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1145,6 +1170,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354583219}
   m_CullTransparentMesh: 1
+--- !u!95 &1354583223
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354583219}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 056fe35a422896242961e2ca77c3d2a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1418001831
 GameObject:
   m_ObjectHideFlags: 0

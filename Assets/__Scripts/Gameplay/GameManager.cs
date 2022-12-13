@@ -14,6 +14,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance = null;
+
     [SerializeField] RawImage EmotePreview;
     [SerializeField] TMP_InputField IF_emote;
     [SerializeField] GameObject DownloadInfo;
@@ -33,6 +35,14 @@ public class GameManager : MonoBehaviour
 
     SevenTV.SevenTV sevenTv;
     EmoteSet emoteset;
+
+    public void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+    }
 
     private async void Start()
     {
@@ -194,18 +204,18 @@ public class GameManager : MonoBehaviour
     {
         if (name == Emote.name)
         {
-            Debug.Log("You guessed it!");
+            MatchResult.instance.Request(0, Emote.name);
             RerollEmote();
         } else
         {
-            Debug.Log("nope");
+            MatchResult.instance.Request(1, Emote.name);
         }
     }
 
     public void GiveUp()
     {
         if(Emote != null)
-            Debug.Log("Emote name was: " + Emote.name);
+            MatchResult.instance.Request(2, Emote.name);
         RerollEmote();
     }
 
