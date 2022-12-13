@@ -10,6 +10,7 @@ using System;
 using unity.libwebp;
 using UnityEngine.Assertions;
 using unity.libwebp.Interop;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,14 +33,20 @@ public class GameManager : MonoBehaviour
 
     SevenTV.SevenTV sevenTv;
     EmoteSet emoteset;
-    string EmoteSetID = "60be4f7dec711f52802d4235";
 
     private async void Start()
     {
-        sevenTv = new SevenTV.SevenTV();
-        emoteset = await sevenTv.GetEmoteSet(EmoteSetID);
-
         animCoroutine = PlayAnimation();
+        if (PlayerPrefs.HasKey("7tv_emoteset"))
+        {
+            sevenTv = new SevenTV.SevenTV();
+            emoteset = await sevenTv.GetEmoteSet(PlayerPrefs.GetString("7tv_emoteset"));
+            RerollEmote();
+        } else
+        {
+            Debug.LogWarning("EmoteSet ID not found. Returning to menu.");
+            SceneManager.LoadSceneAsync("Menu");
+        }
     }
 
     public void RerollEmote()
