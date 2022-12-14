@@ -166,10 +166,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e23d4541c1378d4a81c282d822c8dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lang: en-US
+  lang: pl-PL
   localLanguages:
   - name: English (US)
     locale: en-US
+  - name: Polish
+    locale: pl-PL
 --- !u!1 &883776437
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ready: 0
   NewestGameVersion: 
+  DownloadURL: 
 --- !u!114 &904010841
 MonoBehaviour:
   m_ObjectHideFlags: 0

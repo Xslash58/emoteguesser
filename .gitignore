@@ -27,7 +27,7 @@
 .vs/
 
 #builds
-builds release/
+builds/
 
 # Gradle cache directory
 .gradle/

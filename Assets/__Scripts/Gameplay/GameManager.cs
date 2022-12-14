@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     public void RerollEmote()
     {
-        int id = UnityEngine.Random.Range(-1, emoteset.emotes.Length);
+        int id = UnityEngine.Random.Range(-1, emoteset.emotes.Length-1);
 
         Emote = emoteset.emotes[id];
 

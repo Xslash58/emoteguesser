@@ -17,13 +17,30 @@ public class Menu : MonoBehaviour
     public void Start()
     {
         sevenTv = new SevenTV.SevenTV();
+
+        if (Application.version != RemoteConfig.instance.NewestGameVersion)
+        {
+            string ibcontent = TranslationManager.instance.GetTranslation("gui_infobox_outdatedgame_content")
+                .Replace("{gameversion}", Application.version)
+                .Replace("{newestgameversion}", RemoteConfig.instance.NewestGameVersion)
+                .Replace("{downloadURL}", RemoteConfig.instance.DownloadURL);
+            INFOBOX.instance.Request(TranslationManager.instance.GetTranslation("gui_infobox_outdatedgame_title"), ibcontent);
+        }
     }
 
     public async void EnterChannel()
     {
-        T_Info.gameObject.SetActive(true);
-        await SearchEmoteSet(IF_channel.text);
-        T_Info.gameObject.SetActive(false);
+        try
+        {
+            T_Info.gameObject.SetActive(true);
+            await SearchEmoteSet(IF_channel.text);
+            T_Info.gameObject.SetActive(false);
+
+        }
+        catch (Exception e)
+        {
+            ConsoleManager.instance.Write("menu", e.ToString(), 2);
+        }
     }
 
     public async Task<bool> SearchEmoteSet(string channelName)
