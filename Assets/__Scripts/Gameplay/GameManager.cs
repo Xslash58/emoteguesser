@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour
     public void Guess()
     {
         string name = IF_emote.text;
-        if (name == Emote.name)
+        if (name.ToLower() == Emote.name.ToLower())
         {
             MatchResult.instance.Request(0, Emote.name);
             RerollEmote();
