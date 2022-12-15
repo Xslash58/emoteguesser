@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] RawImage EmotePreview;
     [SerializeField] TMP_InputField IF_emote;
+    [SerializeField] Button B_giveup;
     [SerializeField] GameObject DownloadInfo;
 
     public Emote Emote;
@@ -76,13 +77,15 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DownloadImage(string Url, RawImage image, bool animated)
     {
+        DownloadInfo.SetActive(true);
+        B_giveup.interactable = false;
+
         frames.Clear();
         StopCoroutine(animCoroutine);
 
         UnityWebRequest request;
 
         request = UnityWebRequestTexture.GetTexture(Url);
-        DownloadInfo.SetActive(true);
         DownloadHandlerBuffer dH = new DownloadHandlerBuffer();
         request.downloadHandler = dH;
 
@@ -99,6 +102,7 @@ public class GameManager : MonoBehaviour
         EmotePreview.transform.localScale = new Vector3(anim_info.canvas_width / 128f, anim_info.canvas_height / 128f, 1);
         EmotePreview.rectTransform.localPosition = new Vector3(0, 50, 0);
 
+        B_giveup.interactable = true;
         DownloadInfo.SetActive(false);
     }
     IEnumerator PlayAnimation()

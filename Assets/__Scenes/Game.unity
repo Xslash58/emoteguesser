@@ -597,6 +597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmotePreview: {fileID: 1545425926}
   IF_emote: {fileID: 195754255}
+  B_giveup: {fileID: 1852277007}
   DownloadInfo: {fileID: 441051758}
   isGif: 0
   frames: []
@@ -631,7 +632,9 @@ MonoBehaviour:
   MatchResultobject: {fileID: 1354583219}
   T_Content: {fileID: 1354583221}
   Templates:
-  - content: You guessed it!
+  - content: 'You guessed it!
+
+      The Emote name was: {name}'
     color: {r: 0.023534894, g: 1, b: 0, a: 0}
   - content: Nope
     color: {r: 1, g: 0, b: 0, a: 0}

@@ -15,6 +15,7 @@ public class MatchResult : MonoBehaviour
     [System.Serializable]
     public struct ResultMessage
     {
+        [TextArea(1,5)]
         public string content;
         public Color color;
     }
@@ -57,7 +58,7 @@ public class MatchResult : MonoBehaviour
 
     private void Update()
     {
-        if (Queue.Count > 0 && !MatchResultobject.activeInHierarchy)
+        if (Queue.Count > 0)
         {
             Open(Queue[0]);
         }
@@ -69,6 +70,8 @@ public class MatchResult : MonoBehaviour
         T_Content.text = msg.content;
         T_Content.color = msg.color;
         MatchResultobject.SetActive(true);
+        StopAllCoroutines();
+        //anim.StopPlayback();
         anim.Play("mr_show");
         StartCoroutine(DisableObject());
 
