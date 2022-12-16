@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     public void RerollEmote()
     {
-        int id = UnityEngine.Random.Range(-1, emoteset.emotes.Length-1);
+        int id = UnityEngine.Random.Range(0, emoteset.emotes.Length-1);
 
         Emote = emoteset.emotes[id];
 
@@ -210,6 +210,7 @@ public class GameManager : MonoBehaviour
         if (name.ToLower() == Emote.name.ToLower())
         {
             MatchResult.instance.Request(0, Emote.name);
+            IF_emote.text = "";
             RerollEmote();
         } else
         {
