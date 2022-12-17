@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] Canvas MenuCanvas, SettingsCanvas;
+    [SerializeField] Canvas MenuCanvas, SettingsCanvas, CreditsCanvas;
     [SerializeField] TMP_InputField IF_channel;
     [SerializeField] TextMeshProUGUI T_Info;
 
@@ -89,6 +89,19 @@ public class Menu : MonoBehaviour
         } else
         {
             SettingsCanvas.gameObject.SetActive(false);
+            MenuCanvas.gameObject.SetActive(true);
+        }
+    }
+    public void Credits()
+    {
+        if (!CreditsCanvas.isActiveAndEnabled)
+        {
+            CreditsCanvas.gameObject.SetActive(true);
+            MenuCanvas.gameObject.SetActive(false);
+        }
+        else
+        {
+            CreditsCanvas.gameObject.SetActive(false);
             MenuCanvas.gameObject.SetActive(true);
         }
     }
