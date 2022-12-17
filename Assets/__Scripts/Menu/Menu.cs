@@ -92,4 +92,8 @@ public class Menu : MonoBehaviour
             MenuCanvas.gameObject.SetActive(true);
         }
     }
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
