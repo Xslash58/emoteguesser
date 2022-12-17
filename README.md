@@ -2,7 +2,7 @@
 [![](https://dcbadge.vercel.app/api/server/tdU6SRUMpk?style=flat)](https://discord.gg/tdU6SRUMpk)
 
 # EmoteGuesser
-EmoteGuesser is a very simple game about guessing 7TV Emotes from a specified Twitch channel! It's more challenging than it looks, but you'll have to check it out by yourself!
+EmoteGuesser is a very simple game about guessing 7TV Emotes from a specified Twitch channel! It's more challenging than it sounds, but you'll have to check it out by yourself!
 
 Official builds available on [itch.io](https://xslash.itch.io/emoteguesser)
 
