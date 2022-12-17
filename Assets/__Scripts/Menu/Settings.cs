@@ -15,7 +15,7 @@ public class Settings : MonoBehaviour
 
     private void Start()
     {
-        T_version.text = $"{Application.unityVersion}\n{Application.version}";
+        T_version.text = $"Unity {Application.unityVersion}\n{Application.version}";
 
         Reload();
         TranslationManager.instance.UpdateContent += Reload;
