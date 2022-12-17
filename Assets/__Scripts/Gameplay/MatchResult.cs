@@ -59,19 +59,19 @@ public class MatchResult : MonoBehaviour
     private void Update()
     {
         if (Queue.Count > 0)
-        {
             Open(Queue[0]);
-        }
     }
 
     void Open(ResultMessage msg)
     {
         Queue.Remove(Queue[0]);
+
         T_Content.text = msg.content;
         T_Content.color = msg.color;
+
         MatchResultobject.SetActive(true);
+
         StopAllCoroutines();
-        //anim.StopPlayback();
         anim.Play("mr_show");
         StartCoroutine(DisableObject());
 
@@ -80,21 +80,5 @@ public class MatchResult : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         MatchResultobject.SetActive(false);
-    }
-
-    [ContextMenu("Debug0")]
-    public void Debug0()
-    {
-        Request(0, "peepoHappy");
-    }
-    [ContextMenu("Debug1")]
-    public void Debug1()
-    {
-        Request(1, "peepoHappy");
-    }
-    [ContextMenu("Debug2")]
-    public void Debug2()
-    {
-        Request(2, "peepoHappy");
     }
 }

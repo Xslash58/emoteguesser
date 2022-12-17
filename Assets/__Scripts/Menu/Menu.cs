@@ -19,6 +19,7 @@ public class Menu : MonoBehaviour
     {
         sevenTv = new SevenTV.SevenTV();
 
+        //Check game version
         if (Application.version != RemoteConfig.instance.NewestGameVersion)
         {
             string ibcontent = TranslationManager.instance.GetTranslation("gui_infobox_outdatedgame_content")
@@ -36,11 +37,10 @@ public class Menu : MonoBehaviour
             T_Info.gameObject.SetActive(true);
             await SearchEmoteSet(IF_channel.text);
             T_Info.gameObject.SetActive(false);
-
         }
         catch (Exception e)
         {
-            ConsoleManager.instance.Write("menu", e.ToString(), 2);
+            ConsoleManager.instance.Write("Menu", e.ToString(), 2);
         }
     }
     public async Task<bool> SearchEmoteSet(string channelName)

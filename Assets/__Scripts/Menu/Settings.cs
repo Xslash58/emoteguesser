@@ -17,9 +17,11 @@ public class Settings : MonoBehaviour
     {
         T_version.text = $"Unity {Application.unityVersion}\n{Application.version}";
 
+        //Populate Dropdowns
         Reload();
         TranslationManager.instance.UpdateContent += Reload;
 
+        //Restore settings
         if (PlayerPrefs.HasKey("settings_resolution"))
         {
             int sel = PlayerPrefs.GetInt("settings_resolution");
@@ -69,7 +71,6 @@ public class Settings : MonoBehaviour
         Screen.fullScreen = state;
         PlayerPrefs.SetString("settings_fullscreen", state.ToString());
     }
-
 
     void Reload()
     {

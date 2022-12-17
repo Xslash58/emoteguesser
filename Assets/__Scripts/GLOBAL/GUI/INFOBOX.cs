@@ -57,7 +57,7 @@ public class INFOBOX : MonoBehaviour
 
     private void Update()
     {
-        if (Queue.Count > 0 && !INFOBOXobject.activeInHierarchy) //&& TranslationManager.ready)
+        if (Queue.Count > 0 && !INFOBOXobject.activeInHierarchy && TranslationManager.ready)
         {
             Open(Queue[0]);
         }

@@ -1,16 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
-using SevenTV.Types;
-using UnityEngine;
-using TMPro;
-using UnityEngine.Networking;
-using WebP;
-using System;
-using unity.libwebp;
-using UnityEngine.Assertions;
-using unity.libwebp.Interop;
+
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using UnityEngine.Assertions;
+using UnityEngine.UI;
+using UnityEngine;
+
+using unity.libwebp;
+using unity.libwebp.Interop;
+
+using SevenTV.Types;
+using TMPro;
+using WebP;
 
 public class GameManager : MonoBehaviour
 {
@@ -48,6 +51,8 @@ public class GameManager : MonoBehaviour
     private async void Start()
     {
         animCoroutine = PlayAnimation();
+
+
         if (PlayerPrefs.HasKey("7tv_emoteset"))
         {
             sevenTv = new SevenTV.SevenTV();
@@ -77,12 +82,15 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DownloadImage(string Url, RawImage image, bool animated)
     {
+        //Start
         DownloadInfo.SetActive(true);
         B_giveup.interactable = false;
 
+        //reset currently displayed image
         frames.Clear();
         StopCoroutine(animCoroutine);
 
+        //Request image from given Url
         UnityWebRequest request;
 
         request = UnityWebRequestTexture.GetTexture(Url);
@@ -93,6 +101,7 @@ public class GameManager : MonoBehaviour
 
         var bytes = request.downloadHandler.data;
 
+        //Preview image
         (List<frame> list, WebPAnimInfo anim_info) = LoadAnimation(bytes);
         frames = list;
 
@@ -102,6 +111,7 @@ public class GameManager : MonoBehaviour
         EmotePreview.transform.localScale = new Vector3(anim_info.canvas_width / 128f, anim_info.canvas_height / 128f, 1);
         EmotePreview.rectTransform.localPosition = new Vector3(0, 50, 0);
 
+        //End
         B_giveup.interactable = true;
         DownloadInfo.SetActive(false);
     }

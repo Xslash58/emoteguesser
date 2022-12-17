@@ -24,8 +24,6 @@ public class DiscordController : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
-        if (Application.isBatchMode)
-            return;
 
         discord = new Discord.Discord(appId, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
         discordEnabled = true;
@@ -33,6 +31,7 @@ public class DiscordController : MonoBehaviour
         if (disableRP)
             return;
 
+        //Set RichPresence
         long timeStamp = new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds();
         activityManager = discord.GetActivityManager();
         
@@ -58,6 +57,7 @@ public class DiscordController : MonoBehaviour
                 Debug.Log("[DISCORD] UPDATED ACTIVITY");
             }
         });
+
 
         InvokeRepeating("UpdatePresence", 5, 5);
     }

@@ -23,7 +23,6 @@ public class ConsoleManager : MonoBehaviour
 
     private void Start()
     {
-
         if (instance == null)
             instance = this;
         else
@@ -199,7 +198,6 @@ public class ConsoleManager : MonoBehaviour
             Write("TranslationManager", "Text IDs shown", 0);
         }
         TranslationManager.instance.SendUpdateEvent();
-
     }
     public void cmd_res(string[] args)
     {
