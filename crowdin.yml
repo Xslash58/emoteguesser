@@ -1,0 +1,3 @@
+files:
+  - source: /Assets/NonStreamingAssets/translations/en-US.ini
+    translation: /Assets/StreamingAssets/translations/%locale%.ini
