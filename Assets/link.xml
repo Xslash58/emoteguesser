@@ -1,0 +1,5 @@
+<linker>
+	<assembly fullname="Newtonsoft.Json" preserve="all"/>
+	<assembly fullname="SevenTV.Types" preserve="all"/>
+	<assembly fullname="SevenTV" preserve="all"/>
+</linker>
