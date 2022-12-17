@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 1086607876}
   - component: {fileID: 1086607875}
   m_Layer: 5
-  m_Name: MainCanvas
+  m_Name: MenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1238,6 +1238,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1086607878}
     m_Modifications:
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2120222434}
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Menu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3470626870633492951, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2006,6 +2034,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 879468211}
     m_Modifications:
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2120222434}
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Menu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626870633492950, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3470626870633492951, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2420,6 +2476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d52d07a03e48249a9c5578c0a0aacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MenuCanvas: {fileID: 1086607877}
+  SettingsCanvas: {fileID: 879468210}
   IF_channel: {fileID: 24179046}
   T_Info: {fileID: 2084502211}
 --- !u!4 &2120222435

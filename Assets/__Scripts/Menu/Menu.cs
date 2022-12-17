@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 public class Menu : MonoBehaviour
 {
+    [SerializeField] Canvas MenuCanvas, SettingsCanvas;
     [SerializeField] TMP_InputField IF_channel;
     [SerializeField] TextMeshProUGUI T_Info;
 
@@ -42,7 +43,6 @@ public class Menu : MonoBehaviour
             ConsoleManager.instance.Write("menu", e.ToString(), 2);
         }
     }
-
     public async Task<bool> SearchEmoteSet(string channelName)
     {
         TwitchUser[] ttvUser = await sevenTv.GetTwitchUser(channelName);
@@ -77,5 +77,19 @@ public class Menu : MonoBehaviour
         SceneManager.LoadSceneAsync("Game");
 
         return true;
+    }
+
+    
+    public void Settings()
+    {
+        if (!SettingsCanvas.isActiveAndEnabled)
+        {
+            SettingsCanvas.gameObject.SetActive(true);
+            MenuCanvas.gameObject.SetActive(false);
+        } else
+        {
+            SettingsCanvas.gameObject.SetActive(false);
+            MenuCanvas.gameObject.SetActive(true);
+        }
     }
 }
