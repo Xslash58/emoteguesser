@@ -11,6 +11,7 @@ public class RemoteConfig : MonoBehaviour
     public bool Ready;
     public string NewestGameVersion;
     public string DownloadURL;
+    public string TranslationsURL;
 
     public delegate void ReadyHandler();
     public event ReadyHandler ReadyEvent;
@@ -59,6 +60,7 @@ public class RemoteConfig : MonoBehaviour
     {
         NewestGameVersion = cfget.GetString("Game_version");
         DownloadURL = cfget.GetString("downloadurl");
+        TranslationsURL = cfget.GetString("translationurl");
         ReadyEvent?.Invoke();
     }
 
