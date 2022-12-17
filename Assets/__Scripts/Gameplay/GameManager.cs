@@ -235,4 +235,10 @@ public class GameManager : MonoBehaviour
         RerollEmote();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene("Menu");
+    }
+
 }
