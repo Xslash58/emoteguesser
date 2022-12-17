@@ -33,7 +33,10 @@ public class MatchResult : MonoBehaviour
         if (Templates.Count >= ID - 1)
         {
             ResultMessage msg = Templates[ID];
-            msg.content = msg.content.Replace("{name}", emoteName);
+
+            msg.content = TranslationManager.instance.GetTranslation(msg.content)
+            .Replace("{name}", emoteName);
+
             return msg;
         }
         return new ResultMessage();

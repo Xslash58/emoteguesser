@@ -190,13 +190,11 @@ MonoBehaviour:
   MatchResultobject: {fileID: 1354583219}
   T_Content: {fileID: 1354583221}
   Templates:
-  - content: 'You guessed it!
-
-      The Emote name was: {name}'
+  - content: game_matchresult_guessed
     color: {r: 0.023534894, g: 1, b: 0, a: 0}
-  - content: Nope
+  - content: game_matchresult_wrong
     color: {r: 1, g: 0, b: 0, a: 0}
-  - content: 'The emote name was: {name}'
+  - content: game_matchresult_giveup
     color: {r: 1, g: 1, b: 1, a: 0}
   Queue: []
 --- !u!1 &441051758
