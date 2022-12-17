@@ -168,10 +168,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lang: en-US
   localLanguages:
+  - name: Catalan
+    locale: ca-ES
+  - name: Czech
+    locale: cs-CZ
+  - name: Danish
+    locale: da-DK
+  - name: German
+    locale: de-DE
+  - name: English (UK)
+    locale: en-GB
   - name: English (US)
     locale: en-US
+  - name: Spanish (Latin America)
+    locale: es-419
+  - name: Spanish
+    locale: es-ES
+  - name: Finnish
+    locale: fi-FI
+  - name: French
+    locale: fr-FR
+  - name: Italian
+    locale: it-IT
+  - name: Norwegian Bokman
+    locale: nb-NO
+  - name: Dutch
+    locale: nl-NL
   - name: Polish
     locale: pl-PL
+  - name: Portuguese (Brazilian)
+    locale: pt-BR
+  - name: Portuguese
+    locale: pt-PT
+  - name: Albanian
+    locale: sq-AL
+  - name: Swedish
+    locale: sv-SE
+  - name: Ukrainian
+    locale: uk-UA
 --- !u!1 &883776437
 GameObject:
   m_ObjectHideFlags: 0
