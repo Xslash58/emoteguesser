@@ -163,11 +163,8 @@ public class GameManager : MonoBehaviour
                 size = new UIntPtr((uint)bytes.Length)
             };
             WebPAnimDecoder* dec = NativeLibwebpdemux.WebPAnimDecoderNew(&webpdata, &option);
-            //dec->config_.options.flip = 1;
 
             NativeLibwebpdemux.WebPAnimDecoderGetInfo(dec, &anim_info);
-
-           // Debug.LogWarning($"{anim_info.frame_count} {anim_info.canvas_width}/{anim_info.canvas_height}");
 
             uint size = anim_info.canvas_width * 4 * anim_info.canvas_height;
 
@@ -188,18 +185,15 @@ public class GameManager : MonoBehaviour
                 Texture2D texture = Texture2DExt.CreateWebpTexture2D(lWidth, lHeight, lMipmaps, lLinear);
                 texture.LoadRawTextureData(pp, (int)size);
 
-                {// Flip updown.
-                 // ref: https://github.com/netpyoung/unity.webp/issues/25
-                 // ref: https://github.com/netpyoung/unity.webp/issues/21
-                 // ref: https://github.com/webmproject/libwebp/blob/master/src/demux/anim_decode.c#L309
-                    Color[] pixels = texture.GetPixels();
-                    Color[] pixelsFlipped = new Color[pixels.Length];
-                    for (int y = 0; y < anim_info.canvas_height; y++)
-                    {
-                        Array.Copy(pixels, y * anim_info.canvas_width, pixelsFlipped, (anim_info.canvas_height - y - 1) * anim_info.canvas_width, anim_info.canvas_width);
-                    }
-                    texture.SetPixels(pixelsFlipped);
+                // Flip updown.
+                Color[] pixels = texture.GetPixels();
+                Color[] pixelsFlipped = new Color[pixels.Length];
+                for (int y = 0; y < anim_info.canvas_height; y++)
+                {
+                    Array.Copy(pixels, y * anim_info.canvas_width, pixelsFlipped, (anim_info.canvas_height - y - 1) * anim_info.canvas_width, anim_info.canvas_width);
                 }
+                texture.SetPixels(pixelsFlipped);
+
 
                 texture.Apply();
                 ret.Add(new frame
