@@ -1107,9 +1107,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1487100900}
     m_Modifications:
+    - target: {fileID: 5458014368831132529, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: key
+      value: game_emoteinput_placeholder
+      objectReference: {fileID: 0}
     - target: {fileID: 5458014368831132535, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
       propertyPath: m_text
-      value: Emote name...
+      value: Enter Emote name...
       objectReference: {fileID: 0}
     - target: {fileID: 5458014369169266832, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
       propertyPath: m_Name
