@@ -1580,6 +1580,18 @@ PrefabInstance:
       propertyPath: m_text
       value: Give Up
       objectReference: {fileID: 0}
+    - target: {fileID: 3470626871562428729, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626871562428729, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626871562428729, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
 --- !u!224 &1726446449 stripped
