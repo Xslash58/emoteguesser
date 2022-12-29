@@ -1107,9 +1107,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1487100900}
     m_Modifications:
+    - target: {fileID: 5458014368831132529, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: key
+      value: game_emoteinput_placeholder
+      objectReference: {fileID: 0}
     - target: {fileID: 5458014368831132535, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
       propertyPath: m_text
-      value: Emote name...
+      value: Enter Emote name...
       objectReference: {fileID: 0}
     - target: {fileID: 5458014369169266832, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
       propertyPath: m_Name
@@ -1575,6 +1579,18 @@ PrefabInstance:
     - target: {fileID: 3470626871562428729, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
       propertyPath: m_text
       value: Give Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626871562428729, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626871562428729, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470626871562428729, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c26ee3c21c023042892711c750499b1, type: 3}

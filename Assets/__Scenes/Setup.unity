@@ -206,6 +206,8 @@ MonoBehaviour:
     locale: sv-SE
   - name: Ukrainian
     locale: uk-UA
+  - name: Bashkir
+    locale: ba-RU
 --- !u!1 &883776437
 GameObject:
   m_ObjectHideFlags: 0

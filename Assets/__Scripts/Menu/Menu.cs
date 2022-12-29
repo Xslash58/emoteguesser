@@ -109,4 +109,9 @@ public class Menu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void Github() =>
+        Application.OpenURL(RemoteConfig.instance.GithubURL);
+    public void Discord() =>
+        Application.OpenURL(RemoteConfig.instance.DiscordURL);
 }

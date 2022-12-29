@@ -12,6 +12,8 @@ public class RemoteConfig : MonoBehaviour
     public string NewestGameVersion;
     public string DownloadURL;
     public string TranslationsURL;
+    public string GithubURL;
+    public string DiscordURL;
 
     public delegate void ReadyHandler();
     public event ReadyHandler ReadyEvent;
@@ -61,6 +63,8 @@ public class RemoteConfig : MonoBehaviour
         NewestGameVersion = cfget.GetString("Game_version");
         DownloadURL = cfget.GetString("downloadurl");
         TranslationsURL = cfget.GetString("translationurl");
+        GithubURL = cfget.GetString("githuburl");
+        DiscordURL = cfget.GetString("discordurl");
         ReadyEvent?.Invoke();
     }
 
