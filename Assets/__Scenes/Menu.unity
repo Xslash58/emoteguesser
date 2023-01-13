@@ -2487,6 +2487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 829551530}
+  - component: {fileID: 829551533}
   - component: {fileID: 829551532}
   - component: {fileID: 829551531}
   m_Layer: 5
@@ -2612,6 +2613,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829551529}
   m_CullTransparentMesh: 1
+--- !u!114 &829551533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829551529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f33e795d05e4b45a17ad3bf70278e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: menu_emotesetselector_title
 --- !u!224 &861695021 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8180481155692535167, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
@@ -5852,6 +5866,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1982571706}
+  - component: {fileID: 1982571709}
   - component: {fileID: 1982571708}
   - component: {fileID: 1982571707}
   m_Layer: 5
@@ -5900,7 +5915,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ChannelName has multiple Emote Sets on his 7TV Profile. Select the one
+  m_text: This channel has multiple Emote Sets on its 7TV Profile. Select the one
     you want to use.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0eac1939003c268448d1b1b71861a7ca, type: 2}
@@ -5978,6 +5993,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982571705}
   m_CullTransparentMesh: 1
+--- !u!114 &1982571709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982571705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f33e795d05e4b45a17ad3bf70278e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: menu_emotesetselector_description
 --- !u!1001 &1989061462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6115,11 +6143,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3470626871562428711, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
       propertyPath: key
-      value: common_start
+      value: common_continue
       objectReference: {fileID: 0}
     - target: {fileID: 3470626871562428729, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
       propertyPath: m_text
-      value: Start
+      value: Continue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c26ee3c21c023042892711c750499b1, type: 3}
