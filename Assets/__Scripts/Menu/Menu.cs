@@ -102,12 +102,6 @@ public class Menu : MonoBehaviour
             return null;
         }
 
-        if (conn.emote_set.emotes == null)
-        {
-            INFOBOX.instance.Request("7TV", TranslationManager.instance.GetTranslation("gui_infobox_7tv_emotesetnoemotes_content"));
-            return null;
-        }
-
         return conn.emote_set;
     }
     public void Play(string emoteSetId)
