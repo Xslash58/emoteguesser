@@ -12,6 +12,7 @@ namespace EmoteGuesser.Menu.SetSelector
         [SerializeField] TextMeshProUGUI T_setName;
         [SerializeField] TextMeshProUGUI T_slots;
         [SerializeField] GameObject B_active;
+        [SerializeField] GameObject B_selected;
 
         void Start()
         {
@@ -25,6 +26,12 @@ namespace EmoteGuesser.Menu.SetSelector
         public void onClick()
         {
             EmoteSetSelector.instance.SelectedEmoteSet = Set;
+            EmoteSetSelector.instance.UnselectAll();
+            B_selected.SetActive(true);
+        }
+        public void Unselect()
+        {
+            B_selected.SetActive(false);
         }
     }
 }

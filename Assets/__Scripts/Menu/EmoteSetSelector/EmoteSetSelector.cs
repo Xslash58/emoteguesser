@@ -43,6 +43,12 @@ public class EmoteSetSelector : MonoBehaviour
         Menu.instance.Play(SelectedEmoteSet.id);
     }
 
+    public void UnselectAll()
+    {
+        foreach (Transform obj in SR_EmoteSets.content)
+            obj.GetComponent<EmoteSet>().Unselect();
+    }
+
 
     void Reload()
     {
