@@ -7,17 +7,20 @@ namespace EmoteGuesser.Menu.SetSelector
 {
     public class EmoteSet : MonoBehaviour
     {
-        public string setName;
-        public int capacity;
-        public int emoteCount;
+        public SevenTV.Types.EmoteSet Set;
 
         [SerializeField] TextMeshProUGUI T_setName;
         [SerializeField] TextMeshProUGUI T_slots;
 
         void Start()
         {
-            T_setName.text = setName;
-            T_slots.text = $"{emoteCount}/{capacity}";
+            T_setName.text = Set.name;
+            T_slots.text = $"{Set.emotes.Length}/{Set.capacity}";
+        }
+
+        public void onClick()
+        {
+            EmoteSetSelector.instance.SelectedEmoteSet = Set;
         }
     }
 }

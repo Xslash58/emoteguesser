@@ -9,11 +9,20 @@ using System.Threading.Tasks;
 
 public class Menu : MonoBehaviour
 {
+    public static Menu instance = null;
     [SerializeField] Canvas MenuCanvas, SettingsCanvas, CreditsCanvas;
     [SerializeField] TMP_InputField IF_channel;
     [SerializeField] TextMeshProUGUI T_Info;
 
     SevenTV.SevenTV sevenTv;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+    }
 
     public void Start()
     {
@@ -35,7 +44,29 @@ public class Menu : MonoBehaviour
         try
         {
             T_Info.gameObject.SetActive(true);
-            await SearchEmoteSet(IF_channel.text);
+            EmoteSet eset = await SearchEmoteSet(IF_channel.text);
+
+            if (eset == null)
+            {
+                T_Info.gameObject.SetActive(false);
+                return;
+            }
+
+            //Get emotesets again to gain data about emotes
+            List<EmoteSet> sets = new List<EmoteSet>();
+            User user = await sevenTv.GetUser(eset.owner.id);
+
+            foreach (EmoteSet set in user.emote_sets)
+            {
+                EmoteSet tempset = await sevenTv.GetEmoteSet(set.id);
+                if(tempset.emotes == null || tempset.emotes.Length <= 0)
+                    continue;
+                sets.Add(tempset);
+            }
+
+            //Open EmoteSetSelector
+            EmoteSetSelector.instance.Show(sets);
+
             T_Info.gameObject.SetActive(false);
         }
         catch (Exception e)
@@ -43,40 +74,41 @@ public class Menu : MonoBehaviour
             ConsoleManager.instance.Write("Menu", e.ToString(), 2);
         }
     }
-    public async Task<bool> SearchEmoteSet(string channelName)
+    public async Task<EmoteSet> SearchEmoteSet(string channelName)
     {
         TwitchUser[] ttvUser = await sevenTv.GetTwitchUser(channelName);
 
         if (ttvUser == null || ttvUser.Length == 0)
         {
             INFOBOX.instance.Request("Twitch", TranslationManager.instance.GetTranslation("gui_infobox_twitch_usernotfound_content"));
-            return false;
+            return null;
         }
 
         Connection conn = await sevenTv.GetConnection(ConnectionType.TWITCH, ttvUser[0].id);
         if (conn == null)
         {
             INFOBOX.instance.Request("7TV", TranslationManager.instance.GetTranslation("gui_infobox_7tv_twitchnotfound_content"));
-            return false;
+            return null;
         }
 
         if (conn.emote_set == null)
         {
             INFOBOX.instance.Request("7TV", TranslationManager.instance.GetTranslation("gui_infobox_7tv_emotesetnotfound_content"));
-            return false;
+            return null;
         }
 
         if (conn.emote_set.emotes == null)
         {
             INFOBOX.instance.Request("7TV", TranslationManager.instance.GetTranslation("gui_infobox_7tv_emotesetnoemotes_content"));
-            return false;
+            return null;
         }
 
-        PlayerPrefs.SetString("7tv_emoteset", conn.emote_set.id);
-
+        return conn.emote_set;
+    }
+    public void Play(string emoteSetId)
+    {
+        PlayerPrefs.SetString("7tv_emoteset", emoteSetId);
         SceneManager.LoadSceneAsync("Game");
-
-        return true;
     }
 
     

@@ -1,54 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
-using SevenTV.Types;
+using EmoteGuesser.Menu.SetSelector;
 using UnityEngine.UI;
 using UnityEngine;
 using System.Linq;
 
-namespace EmoteGuesser.Menu.SetSelector
+public class EmoteSetSelector : MonoBehaviour
 {
-    public class EmoteSetSelector : MonoBehaviour
+    public static EmoteSetSelector instance = null;
+
+    public SevenTV.Types.EmoteSet SelectedEmoteSet;
+
+    [SerializeField] GameObject SetSelector;
+
+    [SerializeField] List<SevenTV.Types.EmoteSet> EmoteSets = new List<SevenTV.Types.EmoteSet>();
+    [SerializeField] ScrollRect SR_EmoteSets;
+    [SerializeField] GameObject EmoteSetObject;
+
+    private void Awake()
     {
-        public static EmoteSetSelector instance = null;
-        [SerializeField] GameObject SetSelector;
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+    }
 
-        [SerializeField] List<SevenTV.Types.EmoteSet> EmoteSets = new List<SevenTV.Types.EmoteSet>();
-        [SerializeField] ScrollRect SR_EmoteSets;
-        [SerializeField] GameObject EmoteSetObject;
+    public void Show(List<SevenTV.Types.EmoteSet> emoteSets)
+    {
+        EmoteSets = emoteSets;
+        Reload();
+        SetSelector.SetActive(true);
+    }
+    public void Hide()
+    {
+        SetSelector.SetActive(false);
+    }
+    public void Continue()
+    {
+        if (SelectedEmoteSet == null)
+            return;
 
-        private void Awake()
+        Menu.instance.Play(SelectedEmoteSet.id);
+    }
+
+
+    void Reload()
+    {
+        foreach (Transform obj in SR_EmoteSets.content)
+            Destroy(obj.gameObject);
+
+        foreach (SevenTV.Types.EmoteSet set in EmoteSets)
         {
-            if (instance == null)
-                instance = this;
-            else
-                Destroy(this);
-        }
-
-        public void Show(SevenTV.Types.EmoteSet[] emoteSets)
-        {
-            EmoteSets = emoteSets.ToList();
-            Reload();
-            SetSelector.SetActive(true);
-        }
-        public void Hide()
-        {
-            SetSelector.SetActive(false);
-        }
-
-        void Reload()
-        {
-            foreach (GameObject obj in SR_EmoteSets.content)
-                Destroy(obj);
-
-            foreach(SevenTV.Types.EmoteSet set in EmoteSets)
-            {
-                GameObject obj = Instantiate(EmoteSetObject, SR_EmoteSets.content);
-                EmoteSet eset = obj.GetComponent<EmoteSet>();
-                obj.name = set.name;
-                eset.setName = set.name;
-                eset.capacity = set.capacity;
-                eset.emoteCount = set.emotes.Count();
-            }
+            GameObject obj = Instantiate(EmoteSetObject, SR_EmoteSets.content);
+            EmoteSet eset = obj.GetComponent<EmoteSet>();
+            obj.name = set.name;
+            eset.Set = set;
         }
     }
 }
