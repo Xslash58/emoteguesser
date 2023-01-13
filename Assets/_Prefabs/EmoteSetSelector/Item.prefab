@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   T_setName: {fileID: 8523061768169734959}
   T_slots: {fileID: 8523061767487278463}
+  B_active: {fileID: 3342020194834691515}
 --- !u!222 &8523061767132652867
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -61,6 +61,11 @@ public class Menu : MonoBehaviour
                 EmoteSet tempset = await sevenTv.GetEmoteSet(set.id);
                 if(tempset.emotes == null || tempset.emotes.Length <= 0)
                     continue;
+
+                //sice tags are never used by EmoteGuesser, we use them to mark active emote set
+                if (set.name == eset.name)
+                    tempset.tags = new string[] { "eg_active" };
+
                 sets.Add(tempset);
             }
 
