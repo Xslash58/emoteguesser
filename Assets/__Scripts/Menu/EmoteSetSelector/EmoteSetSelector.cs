@@ -28,6 +28,14 @@ public class EmoteSetSelector : MonoBehaviour
     public void Show(List<SevenTV.Types.EmoteSet> emoteSets)
     {
         EmoteSets = emoteSets;
+
+        //Selector is useless on 1 emote set
+        if (EmoteSets.Count == 1)
+        {
+            SelectedEmoteSet = EmoteSets[0];
+            Continue();
+        }
+
         Reload();
         SetSelector.SetActive(true);
     }
