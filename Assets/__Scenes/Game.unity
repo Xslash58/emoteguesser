@@ -157,9 +157,12 @@ MonoBehaviour:
   IF_emote: {fileID: 1606098333}
   B_giveup: {fileID: 1726446450}
   DownloadInfo: {fileID: 441051758}
+  T_counter: {fileID: 1429772572}
   isGif: 0
   frames: []
   framesPerSecond: 25
+  guessed: 0
+  unguessed: 0
 --- !u!4 &401022801
 Transform:
   m_ObjectHideFlags: 0
