@@ -23,11 +23,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_InputField IF_emote;
     [SerializeField] Button B_giveup;
     [SerializeField] GameObject DownloadInfo;
+    [SerializeField] TextMeshProUGUI T_counter;
 
     public Emote Emote;
     public bool isGif = false;
     public List<frame> frames = new List<frame>();
     public int framesPerSecond = 10;
+
+    public int guessed, unguessed;
 
     [System.Serializable] public struct frame
     {
@@ -67,6 +70,9 @@ public class GameManager : MonoBehaviour
 
     public void RerollEmote()
     {
+        if (T_counter)
+            T_counter.text = $"{guessed}<size=75%>/{unguessed}";
+
         int id = UnityEngine.Random.Range(0, emoteset.emotes.Length-1);
 
         Emote = emoteset.emotes[id];
@@ -215,6 +221,7 @@ public class GameManager : MonoBehaviour
         {
             MatchResult.instance.Request(0, Emote.name);
             IF_emote.text = "";
+            guessed++;
             RerollEmote();
         } else
         {
@@ -226,6 +233,7 @@ public class GameManager : MonoBehaviour
     {
         if(Emote != null)
             MatchResult.instance.Request(2, Emote.name);
+        unguessed++;
         RerollEmote();
     }
 
