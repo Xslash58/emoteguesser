@@ -28,11 +28,12 @@ namespace EmoteGuesser.Utilities.Image
             DownloadHandlerBuffer dH = new DownloadHandlerBuffer();
             request.downloadHandler = dH;
 
-            //yield return request.SendWebRequest();
             await request.SendWebRequest();
 
             return request.downloadHandler.data;
         }
+
+        //Returns all webp frames with an animation data from specified bytes (Most likely from GetBytes function)
         public static unsafe (List<frame>, WebPAnimInfo) LoadAnimation(byte[] bytes)
         {
             if (bytes == null)
