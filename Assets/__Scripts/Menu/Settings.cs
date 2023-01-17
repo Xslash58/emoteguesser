@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Lexone.UnityTwitchChat;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
@@ -7,7 +8,8 @@ using TMPro;
 public class Settings : MonoBehaviour
 {
     [SerializeField] TMP_Dropdown DP_Resolution, DP_Language;
-    [SerializeField] Toggle TG_Fullscreen;
+    [SerializeField] Toggle TG_Fullscreen, TG_TwitchEnabled;
+    [SerializeField] TMP_InputField IF_TwitchName;
 
     [SerializeField] TextMeshProUGUI T_version;
 
@@ -40,6 +42,19 @@ public class Settings : MonoBehaviour
             int sel = PlayerPrefs.GetInt("settings_language");
             DP_Language.value = sel;
         }
+
+        if (PlayerPrefs.HasKey("settings_twitch_enabled"))
+        {
+            string sel = PlayerPrefs.GetString("settings_twitch_enabled");
+            bool choice = bool.Parse(sel);
+            TG_TwitchEnabled.isOn = choice;
+        }
+        if (PlayerPrefs.HasKey("settings_twitch_channel"))
+        {
+            string sel = PlayerPrefs.GetString("settings_twitch_channel");
+            IF_TwitchName.text = sel;
+            ChangeTwitchChannel(sel);
+        }
     }
 
     public void ChangeResolution(int choice)
@@ -70,6 +85,16 @@ public class Settings : MonoBehaviour
         fullscreen = state;
         Screen.fullScreen = state;
         PlayerPrefs.SetString("settings_fullscreen", state.ToString());
+    }
+
+    public void ChangeTwitchIntegration(bool state)
+    {
+        PlayerPrefs.SetString("settings_twitch_enabled", state.ToString());
+    }
+    public void ChangeTwitchChannel(string name)
+    {
+        IRC.Instance.channel = name;
+        PlayerPrefs.SetString("settings_twitch_channel", name);
     }
 
     void Reload()
