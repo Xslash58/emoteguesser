@@ -85,7 +85,7 @@ namespace EmoteGuesser.Twitch
 
             string scoreboardtext = $"1. {Scoreboard[0].Key} {Scoreboard[0].Value}";
             for (int i = 1; i < Scoreboard.Count; i++)
-                scoreboardtext += $"\n{i + 1}. {Scoreboard[0].Key} {Scoreboard[0].Value}";
+                scoreboardtext += $"\n{i + 1}. {Scoreboard[i].Key} {Scoreboard[i].Value}";
 
             T_scoreboard.text = scoreboardtext;
 
