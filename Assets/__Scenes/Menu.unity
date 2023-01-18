@@ -737,6 +737,10 @@ PrefabInstance:
       value: T_Enabled
       objectReference: {fileID: 0}
     - target: {fileID: 8538581153395311431, guid: 0088db336efd74d45bee58781e800ecd, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538581153395311431, guid: 0088db336efd74d45bee58781e800ecd, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3462,7 +3466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &879468208
 MonoBehaviour:
   m_ObjectHideFlags: 0
