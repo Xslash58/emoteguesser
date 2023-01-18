@@ -25,6 +25,10 @@ public class Settings : MonoBehaviour
         Reload();
         TranslationManager.instance.UpdateContent += Reload;
 
+        //Promote 'TWITCHPLAYS' since its better and makes more sense
+        if (!PlayerPrefs.HasKey("settings_twitch_gamemode"))
+            ChangeTwitchGamemode(1);
+
         //Restore settings
         if (PlayerPrefs.HasKey("settings_resolution"))
         {
