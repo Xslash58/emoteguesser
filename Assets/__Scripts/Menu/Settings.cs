@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using Lexone.UnityTwitchChat;
+using EmoteGuesser.Twitch;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Settings : MonoBehaviour
 {
-    [SerializeField] TMP_Dropdown DP_Resolution, DP_Language;
+    [SerializeField] TMP_Dropdown DP_Resolution, DP_Language, DP_Twitch_Gamemodes;
     [SerializeField] Toggle TG_Fullscreen, TG_TwitchEnabled;
     [SerializeField] TMP_InputField IF_TwitchName;
 
@@ -55,6 +57,11 @@ public class Settings : MonoBehaviour
             IF_TwitchName.text = sel;
             ChangeTwitchChannel(sel);
         }
+        if (PlayerPrefs.HasKey("settings_twitch_gamemode"))
+        {
+            int sel = PlayerPrefs.GetInt("settings_twitch_gamemode");
+            DP_Twitch_Gamemodes.value = sel;
+        }
     }
 
     public void ChangeResolution(int choice)
@@ -96,6 +103,10 @@ public class Settings : MonoBehaviour
         IRC.Instance.channel = name;
         PlayerPrefs.SetString("settings_twitch_channel", name);
     }
+    public void ChangeTwitchGamemode(int choice)
+    {
+        PlayerPrefs.SetInt("settings_twitch_gamemode", choice);
+    }
 
     void Reload()
     {
@@ -127,6 +138,12 @@ public class Settings : MonoBehaviour
             {
                 DP_Resolution.options.Add(new TMP_Dropdown.OptionData { text = res });
             }
+        }
+
+        if (DP_Twitch_Gamemodes)
+        {
+            foreach (string name in Enum.GetNames(typeof(GameModes)))
+                DP_Twitch_Gamemodes.options.Add(new TMP_Dropdown.OptionData { text = TranslationManager.instance.GetTranslation($"twitch_gamemode_{name}") });
         }
     }
 }

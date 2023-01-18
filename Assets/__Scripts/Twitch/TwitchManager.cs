@@ -84,4 +84,6 @@ namespace EmoteGuesser.Twitch
             GameManager.OnReroll -= OnEmoteReroll;
         }
     }
+
+    public enum GameModes { CLASSIC, TWITCHPLAYS }
 }
