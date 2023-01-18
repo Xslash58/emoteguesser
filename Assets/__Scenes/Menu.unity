@@ -3261,7 +3261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &879468208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3897,7 +3897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1086607875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7006,6 +7006,8 @@ MonoBehaviour:
   DP_Resolution: {fileID: 1146887428}
   DP_Language: {fileID: 704352595}
   TG_Fullscreen: {fileID: 1828875748}
+  TG_TwitchEnabled: {fileID: 0}
+  IF_TwitchName: {fileID: 0}
   T_version: {fileID: 1576876218}
 --- !u!1 &2121633103
 GameObject:
