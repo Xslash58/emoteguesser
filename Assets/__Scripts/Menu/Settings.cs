@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Lexone.UnityTwitchChat;
+using EmoteGuesser.Twitch;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Settings : MonoBehaviour
 {
-    [SerializeField] TMP_Dropdown DP_Resolution, DP_Language;
-    [SerializeField] Toggle TG_Fullscreen;
+    [SerializeField] TMP_Dropdown DP_Resolution, DP_Language, DP_Twitch_Gamemodes;
+    [SerializeField] Toggle TG_Fullscreen, TG_TwitchEnabled;
+    [SerializeField] TMP_InputField IF_TwitchName;
 
     [SerializeField] TextMeshProUGUI T_version;
 
@@ -20,6 +24,10 @@ public class Settings : MonoBehaviour
         //Populate Dropdowns
         Reload();
         TranslationManager.instance.UpdateContent += Reload;
+
+        //Promote 'TWITCHPLAYS' since its better and makes more sense
+        if (!PlayerPrefs.HasKey("settings_twitch_gamemode"))
+            ChangeTwitchGamemode(1);
 
         //Restore settings
         if (PlayerPrefs.HasKey("settings_resolution"))
@@ -39,6 +47,24 @@ public class Settings : MonoBehaviour
         {
             int sel = PlayerPrefs.GetInt("settings_language");
             DP_Language.value = sel;
+        }
+
+        if (PlayerPrefs.HasKey("settings_twitch_enabled"))
+        {
+            string sel = PlayerPrefs.GetString("settings_twitch_enabled");
+            bool choice = bool.Parse(sel);
+            TG_TwitchEnabled.isOn = choice;
+        }
+        if (PlayerPrefs.HasKey("settings_twitch_channel"))
+        {
+            string sel = PlayerPrefs.GetString("settings_twitch_channel");
+            IF_TwitchName.text = sel;
+            ChangeTwitchChannel(sel);
+        }
+        if (PlayerPrefs.HasKey("settings_twitch_gamemode"))
+        {
+            int sel = PlayerPrefs.GetInt("settings_twitch_gamemode");
+            DP_Twitch_Gamemodes.value = sel;
         }
     }
 
@@ -72,6 +98,20 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetString("settings_fullscreen", state.ToString());
     }
 
+    public void ChangeTwitchIntegration(bool state)
+    {
+        PlayerPrefs.SetString("settings_twitch_enabled", state.ToString());
+    }
+    public void ChangeTwitchChannel(string name)
+    {
+        IRC.Instance.channel = name;
+        PlayerPrefs.SetString("settings_twitch_channel", name);
+    }
+    public void ChangeTwitchGamemode(int choice)
+    {
+        PlayerPrefs.SetInt("settings_twitch_gamemode", choice);
+    }
+
     void Reload()
     {
         if (DP_Language)
@@ -102,6 +142,13 @@ public class Settings : MonoBehaviour
             {
                 DP_Resolution.options.Add(new TMP_Dropdown.OptionData { text = res });
             }
+        }
+
+        if (DP_Twitch_Gamemodes)
+        {
+            DP_Twitch_Gamemodes.options.Clear();
+            foreach (string name in Enum.GetNames(typeof(GameModes)))
+                DP_Twitch_Gamemodes.options.Add(new TMP_Dropdown.OptionData { text = TranslationManager.instance.GetTranslation($"twitch_gamemode_{name}") });
         }
     }
 }

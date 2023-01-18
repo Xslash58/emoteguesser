@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
 
     public int guessed, unguessed;
 
+    public delegate void RerollHandle();
+    public static event RerollHandle OnReroll;
+
 
     IEnumerator animCoroutine;
 
@@ -78,6 +81,8 @@ public class GameManager : MonoBehaviour
         string finalurl = $"https:{hosturl}/4x.webp";
 
         DownloadImage(finalurl, EmotePreview, isGif);
+
+        OnReroll?.Invoke();
     }
 
 
