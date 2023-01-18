@@ -628,6 +628,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 428405117}
     m_Modifications:
+    - target: {fileID: 8538581152747358305, guid: 0088db336efd74d45bee58781e800ecd, type: 3}
+      propertyPath: key
+      value: common_enabled
+      objectReference: {fileID: 0}
     - target: {fileID: 8538581152747358307, guid: 0088db336efd74d45bee58781e800ecd, type: 3}
       propertyPath: m_text
       value: Enabled
@@ -1071,7 +1075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f33e795d05e4b45a17ad3bf70278e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: menu_settings
+  key: menu_settings_video
 --- !u!1 &233084691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,7 +2235,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4019642864073633780, guid: b5235e7625b1f0344957089b4037c385, type: 3}
       propertyPath: key
-      value: 
+      value: menu_settings_twitchintegration_gamemodes
       objectReference: {fileID: 0}
     - target: {fileID: 4019642864073633786, guid: b5235e7625b1f0344957089b4037c385, type: 3}
       propertyPath: m_text
@@ -3439,7 +3443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f33e795d05e4b45a17ad3bf70278e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: menu_settings
+  key: menu_settings_twitchintegration
 --- !u!1 &879468207
 GameObject:
   m_ObjectHideFlags: 0
@@ -4613,7 +4617,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5458014368831132529, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
       propertyPath: key
-      value: 
+      value: menu_settings_twitchintegration_username
       objectReference: {fileID: 0}
     - target: {fileID: 5458014368831132535, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
       propertyPath: m_text

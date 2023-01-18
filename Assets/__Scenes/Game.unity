@@ -1828,6 +1828,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1638328255}
+  - component: {fileID: 1638328258}
   - component: {fileID: 1638328257}
   - component: {fileID: 1638328256}
   m_Layer: 5
@@ -1953,6 +1954,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638328254}
   m_CullTransparentMesh: 1
+--- !u!114 &1638328258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638328254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f33e795d05e4b45a17ad3bf70278e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: game_twitch_title
 --- !u!1 &1665654734
 GameObject:
   m_ObjectHideFlags: 0
