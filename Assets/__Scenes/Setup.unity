@@ -409,7 +409,7 @@ MonoBehaviour:
   oauth: 
   username: 
   channel: xslash58
-  singleton: 1
+  singleton: 0
   connectOnStart: 0
   showIRCDebug: 0
   showThreadDebug: 0
