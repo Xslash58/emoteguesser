@@ -82,6 +82,7 @@ namespace EmoteGuesser.Twitch
         void UpdateUI()
         {
             List<KeyValuePair<string, int>> Scoreboard = Scores.OrderBy(d => d.Value).ToList();
+            Scoreboard.Reverse();
 
             string scoreboardtext = $"1. {Scoreboard[0].Key} {Scoreboard[0].Value}";
             for (int i = 1; i < Scoreboard.Count; i++)
