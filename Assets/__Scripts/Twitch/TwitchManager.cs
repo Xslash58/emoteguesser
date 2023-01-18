@@ -96,6 +96,7 @@ namespace EmoteGuesser.Twitch
         {
             ttv.OnChatMessage -= OnChatMessage;
             GameManager.OnReroll -= OnEmoteReroll;
+            ttv.Disconnect();
         }
     }
 
