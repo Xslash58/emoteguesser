@@ -720,6 +720,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toggle
       objectReference: {fileID: 0}
+    - target: {fileID: 8538581153395311431, guid: 0088db336efd74d45bee58781e800ecd, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538581153395311431, guid: 0088db336efd74d45bee58781e800ecd, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538581153395311431, guid: 0088db336efd74d45bee58781e800ecd, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2120222436}
+    - target: {fileID: 8538581153395311431, guid: 0088db336efd74d45bee58781e800ecd, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538581153395311431, guid: 0088db336efd74d45bee58781e800ecd, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeTwitchIntegration
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538581153395311431, guid: 0088db336efd74d45bee58781e800ecd, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Settings, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538581153395311431, guid: 0088db336efd74d45bee58781e800ecd, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0088db336efd74d45bee58781e800ecd, type: 3}
 --- !u!224 &48863033 stripped
@@ -4425,6 +4453,34 @@ PrefabInstance:
     - target: {fileID: 5458014369169266832, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
       propertyPath: m_Name
       value: InputField
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458014369169266834, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458014369169266834, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458014369169266834, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2120222436}
+    - target: {fileID: 5458014369169266834, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458014369169266834, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeTwitchChannel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458014369169266834, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Settings, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458014369169266834, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5458014369169266835, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
       propertyPath: m_Pivot.x
