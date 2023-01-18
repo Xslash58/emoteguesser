@@ -411,8 +411,8 @@ MonoBehaviour:
   channel: xslash58
   singleton: 1
   connectOnStart: 0
-  showIRCDebug: 1
-  showThreadDebug: 1
+  showIRCDebug: 0
+  showThreadDebug: 0
   maxDataPerFrame: 30
   readInterval: 50
   readBufferSize: 256
