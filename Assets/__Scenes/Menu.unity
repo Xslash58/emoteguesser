@@ -1154,9 +1154,9 @@ MonoBehaviour:
   m_fontSize: 40
   m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 40
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -3522,9 +3522,9 @@ MonoBehaviour:
   m_fontSize: 40
   m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 40
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -4753,6 +4753,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 428405117}
     m_Modifications:
+    - target: {fileID: 5458014368572859869, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: m_fontSize
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458014368572859869, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458014368572859869, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458014368572859869, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458014368572859869, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 5458014368831132529, guid: 7da8e4ab9279b3e4e8521e052f178b9e, type: 3}
       propertyPath: key
       value: menu_settings_twitchintegration_username
