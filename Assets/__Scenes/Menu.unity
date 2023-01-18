@@ -2247,7 +2247,7 @@ PrefabInstance:
       objectReference: {fileID: 2120222436}
     - target: {fileID: 4019642864282445397, guid: b5235e7625b1f0344957089b4037c385, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeLanguage
+      value: ChangeTwitchGamemode
       objectReference: {fileID: 0}
     - target: {fileID: 4019642864282445402, guid: b5235e7625b1f0344957089b4037c385, type: 3}
       propertyPath: m_Pivot.x

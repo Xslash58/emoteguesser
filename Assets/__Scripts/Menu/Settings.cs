@@ -142,6 +142,7 @@ public class Settings : MonoBehaviour
 
         if (DP_Twitch_Gamemodes)
         {
+            DP_Twitch_Gamemodes.options.Clear();
             foreach (string name in Enum.GetNames(typeof(GameModes)))
                 DP_Twitch_Gamemodes.options.Add(new TMP_Dropdown.OptionData { text = TranslationManager.instance.GetTranslation($"twitch_gamemode_{name}") });
         }
