@@ -349,6 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   T_scoreboard: {fileID: 82052599}
   TwitchCanvas: {fileID: 1685024595}
+  IF_emote: {fileID: 1606098333}
 --- !u!1 &441051758
 GameObject:
   m_ObjectHideFlags: 0

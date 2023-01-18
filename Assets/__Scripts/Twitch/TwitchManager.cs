@@ -16,8 +16,11 @@ namespace EmoteGuesser.Twitch
         Dictionary<string, int> Scores = new Dictionary<string, int>();
         List<string> GuessedRound = new List<string>();
 
+        GameModes gameMode = GameModes.CLASSIC;
+
         [SerializeField] TextMeshProUGUI T_scoreboard;
         [SerializeField] GameObject TwitchCanvas;
+        [SerializeField] TMP_InputField IF_emote;
 
         GameManager gameManager;
         IRC ttv = IRC.Instance;
@@ -29,12 +32,17 @@ namespace EmoteGuesser.Twitch
             else
                 Destroy(this);
 
-            //if (bool.Parse(PlayerPrefs.GetString("settings_twitch_enabled")))
-            if(true)
+            if (PlayerPrefs.HasKey("settings_twitch_enabled") && bool.Parse(PlayerPrefs.GetString("settings_twitch_enabled")))
             {
                 ttv.Connect();
                 ttv.OnChatMessage += OnChatMessage;
                 TwitchCanvas.SetActive(true);
+
+                if (PlayerPrefs.HasKey("settings_twitch_gamemode"))
+                {
+                    GameModes gm = (GameModes) PlayerPrefs.GetInt("settings_twitch_gamemode");
+                    gameMode = gm;
+                }
             }
         }
 
@@ -61,15 +69,20 @@ namespace EmoteGuesser.Twitch
 
                 GuessedRound.Add(chatter.login);
                 UpdateUI();
+
+                if (gameMode == GameModes.TWITCHPLAYS)
+                {
+                    IF_emote.text = gameManager.Emote.name;
+                    gameManager.Guess();
+                }
             }
 
         }
 
         void UpdateUI()
         {
-            //sort scoreboard
             List<KeyValuePair<string, int>> Scoreboard = Scores.OrderBy(d => d.Value).ToList();
-            //Scoreboard.Sort((x, y) => x.Value.CompareTo(y.Value));
+
             string scoreboardtext = $"1. {Scoreboard[0].Key} {Scoreboard[0].Value}";
             for (int i = 1; i < Scoreboard.Count; i++)
                 scoreboardtext += $"\n{i + 1}. {Scoreboard[0].Key} {Scoreboard[0].Value}";
