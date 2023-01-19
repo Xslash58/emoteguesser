@@ -155,9 +155,9 @@ RectTransform:
   m_Father: {fileID: 605233067}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 141.5, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 283, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &82052599
@@ -508,11 +508,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8180481154284275487, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8180481154284275487, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8180481154284275487, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMin.x
@@ -520,11 +520,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8180481154958076990, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8180481154958076990, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8180481154958076990, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMin.y
@@ -532,11 +532,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8180481155023560682, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8180481155023560682, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8180481155225121367, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_SizeDelta.y
@@ -548,27 +548,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8180481155361036207, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8180481155361036207, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8180481155646348217, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8180481155646348217, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8180481155646348217, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8180481155646348217, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8180481155692535164, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_Horizontal
@@ -1855,7 +1855,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 490, y: 335.03}
-  m_SizeDelta: {x: 300, y: 50}
+  m_SizeDelta: {x: 290, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1638328256
 MonoBehaviour:
@@ -1904,12 +1904,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 35.55
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 10
+  m_fontSizeMax: 36
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -2078,7 +2078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1685024596
 MonoBehaviour:
   m_ObjectHideFlags: 0
