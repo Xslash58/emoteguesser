@@ -543,7 +543,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: French - MarcFryd
+  m_text: French - MarcFryd, LEMIBANDDEXARI
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0eac1939003c268448d1b1b71861a7ca, type: 2}
   m_sharedMaterial: {fileID: -300946603873861598, guid: 0eac1939003c268448d1b1b71861a7ca, type: 2}
@@ -5428,7 +5428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Portuguese (Brazilian) - Florucci
+  m_text: Portuguese (Brazilian) - Florucci, zhynks
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0eac1939003c268448d1b1b71861a7ca, type: 2}
   m_sharedMaterial: {fileID: -300946603873861598, guid: 0eac1939003c268448d1b1b71861a7ca, type: 2}
@@ -7959,11 +7959,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8180481154958076990, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.9999999
       objectReference: {fileID: 0}
     - target: {fileID: 8180481154958076990, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.04797685
+      value: 0.04797687
       objectReference: {fileID: 0}
     - target: {fileID: 8180481155023560682, guid: 412b164f42271da45a90dbf5d9582c84, type: 3}
       propertyPath: m_AnchorMax.x
