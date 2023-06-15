@@ -12,4 +12,17 @@ namespace EmoteGuesser.Types
         public bool animated;
         public Provider provider;
     }
+
+    public class YoutubeQuery
+    {
+        public string kind;
+        public string etag;
+        public YoutubeResult[] items;
+    }
+    public class YoutubeResult
+    {
+        public string kind;
+        public string etag;
+        public string id;
+    }
 }

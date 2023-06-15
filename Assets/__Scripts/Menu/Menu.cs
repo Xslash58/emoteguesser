@@ -7,6 +7,11 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Threading.Tasks;
 using UnityEngine.UI;
+using System.Security.Permissions;
+using System.Net.Http;
+using System.Security.Policy;
+using EmoteGuesser.Types;
+using Newtonsoft.Json;
 
 public class Menu : MonoBehaviour
 {
@@ -16,6 +21,8 @@ public class Menu : MonoBehaviour
     [SerializeField] TextMeshProUGUI T_Info, T_InputTitle;
     [SerializeField] Button BTN_Enter; 
     [SerializeField] TMP_Dropdown DP_Platform;
+
+    ConnectionType selectedPlatform;
 
     SevenTV.SevenTV sevenTv;
 
@@ -84,15 +91,47 @@ public class Menu : MonoBehaviour
     }
     public async Task<EmoteSet> SearchEmoteSet(string channelName)
     {
-        TwitchUser[] ttvUser = await sevenTv.GetTwitchUser(channelName);
-
-        if (ttvUser == null || ttvUser.Length == 0)
+        Connection conn = null;
+        if (selectedPlatform == ConnectionType.TWITCH)
         {
-            INFOBOX.instance.Request("Twitch", TranslationManager.instance.GetTranslation("gui_infobox_twitch_usernotfound_content"));
-            return null;
+            TwitchUser[] ttvUser = await sevenTv.GetTwitchUser(channelName);
+
+            if (ttvUser == null || ttvUser.Length == 0)
+            {
+                INFOBOX.instance.Request("Twitch", TranslationManager.instance.GetTranslation("gui_infobox_twitch_usernotfound_content"));
+                return null;
+            }
+
+            conn = await sevenTv.GetConnection(ConnectionType.TWITCH, ttvUser[0].id);
+        }
+        else if (selectedPlatform == ConnectionType.YOUTUBE)
+        {
+            HttpClient client = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, new Uri($"https://yt.lemnoslife.com/channels?handle=@{IF_channel.text}"));
+
+            var response = await client.SendAsync(request);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                INFOBOX.instance.Request("Youtube", TranslationManager.instance.GetTranslation("gui_infobox_twitch_usernotfound_content"));
+                return null;
+            }
+
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            if (responseBody == null)
+                return null;
+
+            YoutubeQuery query = new YoutubeQuery();
+            query = JsonConvert.DeserializeObject<YoutubeQuery>(responseBody);
+
+            if (query == null || query.items.Length == 0)
+                return null;
+
+            conn = await sevenTv.GetConnection(ConnectionType.YOUTUBE, query.items[0].id);
         }
 
-        Connection conn = await sevenTv.GetConnection(ConnectionType.TWITCH, ttvUser[0].id);
+
         if (conn == null)
         {
             INFOBOX.instance.Request("7TV", TranslationManager.instance.GetTranslation("gui_infobox_7tv_twitchnotfound_content"));
@@ -117,7 +156,7 @@ public class Menu : MonoBehaviour
     public void OnPlatformChanged(int value)
     {
         IF_channel.text = "";
-        if (value > 0)
+        if (value > 1)
         {
             IF_channel.interactable = false;
             BTN_Enter.interactable = false;
@@ -132,6 +171,9 @@ public class Menu : MonoBehaviour
 
 
         T_InputTitle.text = TranslationManager.instance.GetTranslation("menu_channelinput_title").Replace("Twitch", DP_Platform.options[value].text);
+
+        Enum.TryParse(DP_Platform.options[value].text.ToUpper(), out ConnectionType platform);
+        selectedPlatform = platform;
 
     }
 
