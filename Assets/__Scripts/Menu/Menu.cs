@@ -59,7 +59,7 @@ public class Menu : MonoBehaviour
             foreach (EmoteSet set in user.emote_sets)
             {
                 EmoteSet tempset = await sevenTv.GetEmoteSet(set.id);
-                if(tempset.emotes == null || tempset.emotes.Length <= 0)
+                if(tempset == null || tempset.emotes == null || tempset.emotes.Length <= 0)
                     continue;
 
                 //since tags are never used by EmoteGuesser, we use them to mark active emote set
@@ -107,6 +107,7 @@ public class Menu : MonoBehaviour
     public void Play(string emoteSetId)
     {
         PlayerPrefs.SetString("7tv_emoteset", emoteSetId);
+        PlayerPrefs.SetString("channelName", IF_channel.text);
         SceneManager.LoadSceneAsync("Game");
     }
 
