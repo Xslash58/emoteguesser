@@ -6,13 +6,16 @@ using System;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
     public static Menu instance = null;
     [SerializeField] Canvas MenuCanvas, SettingsCanvas, CreditsCanvas;
     [SerializeField] TMP_InputField IF_channel;
-    [SerializeField] TextMeshProUGUI T_Info;
+    [SerializeField] TextMeshProUGUI T_Info, T_InputTitle;
+    [SerializeField] Button BTN_Enter; 
+    [SerializeField] TMP_Dropdown DP_Platform;
 
     SevenTV.SevenTV sevenTv;
 
@@ -111,7 +114,27 @@ public class Menu : MonoBehaviour
         SceneManager.LoadSceneAsync("Game");
     }
 
-    
+    public void OnPlatformChanged(int value)
+    {
+        IF_channel.text = "";
+        if (value > 0)
+        {
+            IF_channel.interactable = false;
+            BTN_Enter.interactable = false;
+            ((TextMeshProUGUI)IF_channel.placeholder).text = TranslationManager.instance.GetTranslation("menu_channelinput_title_unavailable").Replace("Twitch", DP_Platform.options[value].text);
+        }
+        else
+        {
+            IF_channel.interactable = true;
+            BTN_Enter.interactable = true;
+            ((TextMeshProUGUI)IF_channel.placeholder).text = TranslationManager.instance.GetTranslation("menu_channelinput_title");
+        }
+
+
+        T_InputTitle.text = TranslationManager.instance.GetTranslation("menu_channelinput_title").Replace("Twitch", DP_Platform.options[value].text);
+
+    }
+
     public void Settings()
     {
         if (!SettingsCanvas.isActiveAndEnabled)
