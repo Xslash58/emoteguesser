@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
                 name = stvEmote.name,
                 emoteUrl = $"https:{stvEmote.data.host.url}/4x.webp",
                 animated = stvEmote.data.animated,
+                listed = stvEmote.data.listed,
                 provider = Provider.SEVENTV
             }));
         }
@@ -101,6 +102,7 @@ public class GameManager : MonoBehaviour
                         name = bttvEmote.code,
                         emoteUrl = $"https://cdn.betterttv.net/emote/{bttvEmote.id}/3x.webp",
                         animated = bttvEmote.animated,
+                        listed = true,
                         provider = Provider.BETTERTTV
                     }));
                 }
@@ -117,11 +119,15 @@ public class GameManager : MonoBehaviour
                         name = ffzEmote.name,
                         emoteUrl = ffzEmote.urls["4"],
                         animated = false,
+                        listed = true,
                         provider = Provider.FRANKERFACEZ
                     }));
                 }
                 catch (Exception e) { ConsoleManager.instance.Write("GameManager", "Failed to load FFZ Emotes: " + e, 2); }
         }
+
+        if (PlayerPrefs.HasKey("settings_unlistedemotes") && bool.Parse(PlayerPrefs.GetString("settings_unlistedemotes")) == false)
+            emotes.RemoveAll(emote => emote.listed == false);
 
         if(emotes.Count < 1)
         {

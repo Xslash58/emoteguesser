@@ -6,11 +6,12 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class Settings : MonoBehaviour
 {
     [SerializeField] TMP_Dropdown DP_Resolution, DP_Language, DP_Twitch_Gamemodes;
-    [SerializeField] Toggle TG_Fullscreen, TG_TwitchEnabled, TG_PROVIDER_SevenTV, TG_PROVIDER_BetterTTV, TG_PROVIDER_FrankerFaceZ;
+    [SerializeField] Toggle TG_Fullscreen, TG_TwitchEnabled, TG_PROVIDER_SevenTV, TG_PROVIDER_BetterTTV, TG_PROVIDER_FrankerFaceZ, TG_UnlistedEmotes;
     [SerializeField] TMP_InputField IF_TwitchName;
 
     [SerializeField] TextMeshProUGUI T_version;
@@ -91,6 +92,15 @@ public class Settings : MonoBehaviour
         }
         else
             TG_PROVIDER_FrankerFaceZ.isOn = false;
+
+        if (PlayerPrefs.HasKey("settings_unlistedemotes"))
+        {
+            string sel = PlayerPrefs.GetString("settings_unlistedemotes");
+            bool choice = bool.Parse(sel);
+            TG_UnlistedEmotes.isOn = choice;
+        }
+        else
+            TG_UnlistedEmotes.isOn = true;
     }
 
     public void ChangeResolution(int choice)
@@ -148,6 +158,11 @@ public class Settings : MonoBehaviour
     public void ChangeProviderFrankerFaceZ(bool state)
     {
         PlayerPrefs.SetString("settings_provider_frankerfacez", state.ToString());
+    }
+
+    public void ChangeUnlistedEmotes(bool state)
+    {
+        PlayerPrefs.SetString("settings_unlistedemotes", state.ToString());
     }
 
     void Reload()

@@ -10,6 +10,7 @@ namespace EmoteGuesser.Types
         public string name;
         public string emoteUrl;
         public bool animated;
+        public bool listed;
         public Provider provider;
     }
 
