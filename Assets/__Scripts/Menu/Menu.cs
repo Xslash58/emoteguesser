@@ -87,6 +87,7 @@ public class Menu : MonoBehaviour
         catch (Exception e)
         {
             ConsoleManager.instance.Write("Menu", e.ToString(), 2);
+            T_Info.gameObject.SetActive(false);
         }
     }
     public async Task<EmoteSet> SearchEmoteSet(string channelName)
