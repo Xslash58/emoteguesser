@@ -167,7 +167,7 @@ public class Menu : MonoBehaviour
         {
             IF_channel.interactable = true;
             BTN_Enter.interactable = true;
-            ((TextMeshProUGUI)IF_channel.placeholder).text = TranslationManager.instance.GetTranslation("menu_channelinput_title");
+            ((TextMeshProUGUI)IF_channel.placeholder).text = TranslationManager.instance.GetTranslation("menu_channelinput_placeholder");
         }
 
 
