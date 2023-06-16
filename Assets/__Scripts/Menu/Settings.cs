@@ -6,11 +6,12 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class Settings : MonoBehaviour
 {
     [SerializeField] TMP_Dropdown DP_Resolution, DP_Language, DP_Twitch_Gamemodes;
-    [SerializeField] Toggle TG_Fullscreen, TG_TwitchEnabled;
+    [SerializeField] Toggle TG_Fullscreen, TG_TwitchEnabled, TG_PROVIDER_SevenTV, TG_PROVIDER_BetterTTV, TG_PROVIDER_FrankerFaceZ, TG_UnlistedEmotes;
     [SerializeField] TMP_InputField IF_TwitchName;
 
     [SerializeField] TextMeshProUGUI T_version;
@@ -66,6 +67,40 @@ public class Settings : MonoBehaviour
             int sel = PlayerPrefs.GetInt("settings_twitch_gamemode");
             DP_Twitch_Gamemodes.value = sel;
         }
+
+        if (PlayerPrefs.HasKey("settings_provider_seventv"))
+        {
+            string sel = PlayerPrefs.GetString("settings_provider_seventv");
+            bool choice = bool.Parse(sel);
+            TG_PROVIDER_SevenTV.isOn = choice;
+        }
+        else
+            TG_PROVIDER_SevenTV.isOn = true;
+        if (PlayerPrefs.HasKey("settings_provider_betterttv"))
+        {
+            string sel = PlayerPrefs.GetString("settings_provider_betterttv");
+            bool choice = bool.Parse(sel);
+            TG_PROVIDER_BetterTTV.isOn = choice;
+        }
+        else
+            TG_PROVIDER_BetterTTV.isOn = false;
+        if (PlayerPrefs.HasKey("settings_provider_frankerfacez"))
+        {
+            string sel = PlayerPrefs.GetString("settings_provider_frankerfacez");
+            bool choice = bool.Parse(sel);
+            TG_PROVIDER_FrankerFaceZ.isOn = choice;
+        }
+        else
+            TG_PROVIDER_FrankerFaceZ.isOn = false;
+
+        if (PlayerPrefs.HasKey("settings_unlistedemotes"))
+        {
+            string sel = PlayerPrefs.GetString("settings_unlistedemotes");
+            bool choice = bool.Parse(sel);
+            TG_UnlistedEmotes.isOn = choice;
+        }
+        else
+            TG_UnlistedEmotes.isOn = true;
     }
 
     public void ChangeResolution(int choice)
@@ -110,6 +145,24 @@ public class Settings : MonoBehaviour
     public void ChangeTwitchGamemode(int choice)
     {
         PlayerPrefs.SetInt("settings_twitch_gamemode", choice);
+    }
+
+    public void ChangeProviderSevenTV(bool state)
+    {
+        PlayerPrefs.SetString("settings_provider_seventv", state.ToString());
+    }
+    public void ChangeProviderBetterTTV(bool state)
+    {
+        PlayerPrefs.SetString("settings_provider_betterttv", state.ToString());
+    }
+    public void ChangeProviderFrankerFaceZ(bool state)
+    {
+        PlayerPrefs.SetString("settings_provider_frankerfacez", state.ToString());
+    }
+
+    public void ChangeUnlistedEmotes(bool state)
+    {
+        PlayerPrefs.SetString("settings_unlistedemotes", state.ToString());
     }
 
     void Reload()

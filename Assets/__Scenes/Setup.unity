@@ -190,7 +190,7 @@ MonoBehaviour:
     locale: fr-FR
   - name: Italian
     locale: it-IT
-  - name: Norwegian Bokman
+  - name: "Norwegian (Bokm\xE5l)"
     locale: nb-NO
   - name: Dutch
     locale: nl-NL

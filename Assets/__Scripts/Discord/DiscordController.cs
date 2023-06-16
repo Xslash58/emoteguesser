@@ -72,8 +72,8 @@ public class DiscordController : MonoBehaviour
                 activity.Instance = false;
                 break;
             case "Game":
-                string ext = GameManager.instance.Emote.data.animated ? "gif" : "webp";
-                activity.Assets.LargeImage = $"https:{GameManager.instance.Emote.data.host.url}/4x.{ext}";
+                string ext = GameManager.instance.Emote.animated ? "gif" : "webp";
+                activity.Assets.LargeImage = $"{GameManager.instance.Emote.emoteUrl.Replace("webp", ext)}";
                 activity.State = "Guessing this emote";
                 activity.Details = "";
                 break;
