@@ -145,7 +145,8 @@ public class Menu : MonoBehaviour
             return null;
         }
 
-        return conn.emote_set;
+        EmoteSet eset = await sevenTv.GetEmoteSet(conn.emote_set.id);
+        return eset;
     }
     public void Play(string emoteSetId)
     {
