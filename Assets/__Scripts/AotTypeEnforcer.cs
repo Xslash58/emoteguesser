@@ -23,6 +23,7 @@ public class AotTypeEnforcer : MonoBehaviour
         AotHelper.EnsureType<TwitchUser>();
         AotHelper.EnsureType<TwitchRoles>();
         AotHelper.EnsureType<TwitchBadge>();
+        AotHelper.EnsureType<TwitchPanel>();
 
         //FFZ
         AotHelper.EnsureType<FFZ.Types.Emote>();
